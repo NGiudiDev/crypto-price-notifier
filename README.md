@@ -52,7 +52,7 @@ This Node.js application fetches the current Bitcoin price every hour and sends 
 1. Start the application:
 
 ```bash
-  node app.js
+  node src/inbdex.js
 ```
 
 Alternatively, you can use [PM2](https://pm2.keymetrics.io/) to run the application as a background service:
