@@ -4,7 +4,7 @@
   "author": "Nicolás Giudice",
   "description": "Node application that retrieves crypto currency prices",
   "keywords": [],
-  "license": "ISC",
+  "license": "MIT",
   "main": "index.js",
   "type": "module",
   "scripts": {
