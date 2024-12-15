@@ -1,0 +1,26 @@
+{
+  "name": "crypto-price-notifier",
+  "version": "1.0.0",
+  "author": "Nicolás Giudice",
+  "description": "Node application that retrieves crypto currency prices",
+  "keywords": [],
+  "license": "ISC",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "delete": "pm2 delete src/index.js",
+    "monit": "pm2 monit",
+    "start": "pm2 start src/index.js",
+    "stop": "pm2 stop src/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "pm2": "^5.4.3",
+    "twilio": "^5.4.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "eslint": "^9.17.0",
+    "globals": "^15.13.0"
+  }
+}
