@@ -2,8 +2,6 @@
 
 This Node.js application fetches the current Bitcoin price every hour and sends it as a WhatsApp message using Twilio. The program is designed to run continuously and ensures that messages are sent precisely at the start of each hour.
 
----
-
 ## Features
 
 - Fetches Bitcoin price in USD and ARS from the [CryptoCompare API](https://min-api.cryptocompare.com/).
@@ -11,8 +9,6 @@ This Node.js application fetches the current Bitcoin price every hour and sends 
 - Sends a WhatsApp message with the price details using Twilio's messaging API.
 
 - Ensures accurate scheduling to execute tasks at the start of each hour.
-
----
 
 ## Requirements
 
@@ -34,8 +30,6 @@ This Node.js application fetches the current Bitcoin price every hour and sends 
   CRYPTOCOMPARE_API_KEY=your_cryptocompare_api_key
 ```
 
----
-
 ## Installation
 
 1. Clone the repository:
@@ -53,8 +47,6 @@ This Node.js application fetches the current Bitcoin price every hour and sends 
 
 3. Create a `.env` file in the root directory and configure the required environment variables as shown above.
 
----
-
 ## Usage
 
 1. Start the application:
@@ -70,8 +62,6 @@ Alternatively, you can use [PM2](https://pm2.keymetrics.io/) to run the applicat
 ```
 
 2. The program will automatically fetch the Bitcoin price and send a WhatsApp message every hour on the dot.
-
----
 
 ## Example Output
 
@@ -94,8 +84,6 @@ Current Bitcoin price:
   Message sent successfully: SID SMXXXXXXXXXXXXXXXXX
 ```
 
----
-
 ## Notes
 
 - Ensure the Twilio sandbox phone number (`ORIGIN_PHONE`) and recipient phone number (`DESTINE_PHONE`) are properly configured.
@@ -104,19 +92,13 @@ Current Bitcoin price:
 
 - If you encounter any errors during API requests or message sending, check the `.env` file and verify your credentials.
 
----
-
 ## License
 
 This project is licensed under the MIT License. Feel free to use and modify it as needed.
 
----
-
 ## Contributing
 
 Contributions are welcome! Feel free to open an issue or submit a pull request for any improvements or features.
-
----
 
 ## Acknowledgements
 
