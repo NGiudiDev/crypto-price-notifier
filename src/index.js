@@ -1,7 +1,23 @@
-import twilio from "twilio";
 import dotenv from "dotenv";
+import twilio from "twilio";
+import winston from "winston";
 
 dotenv.config();
+
+//? winston configuration to create logs.
+const logger = winston.createLogger({
+  level: "info",
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.printf(({ timestamp, level, message }) => {
+      return `[${timestamp}] ${level.toUpperCase()}: ${message}`;
+    })
+  ),
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: "/logs/app.log" }),
+  ],
+});
 
 //? twilio configurations.
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
@@ -16,6 +32,8 @@ const client = twilio(accountSid, authToken);
 
 //? fetch the bitcoin price from the CryptoCompare API.
 const fetchCrypto = () => {
+  logger.info("Obteniendo datos de la API de CryptoCompare...");
+
   return fetch(
     "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,ARS",
     {
@@ -25,6 +43,8 @@ const fetchCrypto = () => {
     }
   ).then((response) => {
     if (!response.ok) {
+      logger.error(`Error al obtener datos de la API: ${response.status}`);
+
       return Promise.reject(
         new Error(`Error al obtener datos de la API: ${response.status}`)
       );
@@ -43,27 +63,28 @@ const sendMessage = (message) => {
       to: toWhatsApp,
     })
     .then((result) => {
-      console.log(`Mensaje enviado exitosamente: SID ${result.sid}`);
+      logger.info(`Mensaje enviado exitosamente: SID ${result.sid}`);
     })
     .catch((error) => {
-      console.error("Error al enviar el mensaje de WhatsApp:", error);
+      logger.error("Error al enviar el mensaje de WhatsApp:", error);
     });
 };
 
 //? function to fetch bitcoin price and send the message.
 const getBitcoinPrice = () => {
-  console.log("Obteniendo el precio de Bitcoin...");
+  logger.info("Iniciando el proceso para obtener el precio de Bitcoin...");
 
   fetchCrypto()
     .then((cryptoData) => {
       const message = `Precio actual de Bitcoin:\n- USD: $${cryptoData.USD}\n- ARS: $${cryptoData.ARS}`;
       
-      console.log("Enviando mensaje con el precio:", message);
+      logger.info("Datos obtenidos correctamente. Mensaje a enviar:");
+      logger.info(message);
 
       return sendMessage(message);
     })
     .catch((error) => {
-      console.error("Error en el proceso de envío del precio de Bitcoin:", error);
+      logger.error("Error en el proceso de envío del precio de Bitcoin:", error);
     });
 };
 
@@ -81,7 +102,7 @@ const calculateDelayToNextHour = () => {
 const scheduleMessage = () => {
   const delay = calculateDelayToNextHour();
 
-  console.log(`El próximo mensaje se enviará en ${delay / 1000} segundos...`);
+  logger.info(`El próximo mensaje se enviará en ${delay / 1000} segundos...`);
 
   //? wait until the next full hour and then set a regular interval.
   setTimeout(() => {

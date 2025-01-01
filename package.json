@@ -16,7 +16,8 @@
   "dependencies": {
     "dotenv": "^16.4.7",
     "pm2": "^5.4.3",
-    "twilio": "^5.4.0"
+    "twilio": "^5.4.0",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
