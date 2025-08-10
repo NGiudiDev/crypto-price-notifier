@@ -5,8 +5,7 @@ This Node.js application fetches the current Bitcoin price every hour and sends 
 ## Features
 
 - Fetches Bitcoin price in USD and ARS from the [CryptoCompare API](https://min-api.cryptocompare.com/).
-
-- Sends a OS message notifier with the price details.
+- Sends a desktop notification with the price details for quick and easy access.
 
 - Ensures accurate scheduling to execute tasks at the start of each hour.
 
@@ -18,7 +17,7 @@ This Node.js application fetches the current Bitcoin price every hour and sends 
 
 - Environment file (.env) with the following variables:
 
-```env 
+```env
   CRYPTOCOMPARE_API_KEY=your_cryptocompare_api_key
 ```
 

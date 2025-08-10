@@ -94,7 +94,5 @@ const scheduleMessage = () => {
   }, delay);
 };
 
-getCryptoPrices();
-
 //? start the program.
 scheduleMessage();
