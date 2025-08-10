@@ -57,12 +57,15 @@ Alternatively, you can use [PM2](https://pm2.keymetrics.io/) to run the applicat
 ## Example Output
 
 ```bash
-  The next message will be sent in 3600 seconds...
-  Fetching Bitcoin price...
-  Sending message with the price: Current Bitcoin price:
-  - USD: $26000
-  - ARS: $9500000
-  Message sent successfully: SID SMXXXXXXXXXXXXXXXXX
+  [2025-08-10T04:25:51.320Z] INFO: Iniciando el proceso para obtener los precios de las criptomonedas...
+  [2025-08-10T04:25:51.321Z] INFO: Obteniendo datos de la API de CryptoCompare...
+  [2025-08-10T04:25:51.366Z] INFO: El próximo mensaje se enviará en 2048.634 segundos...
+  [2025-08-10T04:25:54.347Z] INFO: Datos obtenidos correctamente. Mensaje a enviar:
+  [2025-08-10T04:25:54.348Z] INFO: Precios actuales:
+  - Bitcoin (BTC): $118623
+  - Ethereum (ETH): $4254.39
+  - Solana (SOL): $186.09
+  [2025-08-10T04:25:54.360Z] INFO: Notificación mostrada en el sistema operativo.
 ```
 
 ## License
