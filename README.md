@@ -56,17 +56,6 @@ Alternatively, you can use [PM2](https://pm2.keymetrics.io/) to run the applicat
 
 ## Example Output
 
-### WhatsApp Message
-
-```
-Precios actuales:
-- Bitcoin (BTC): $29123.45
-- Ethereum (ETH): $1823.67
-- Solana (SOL): $42.15
-```
-
-### Console Logs
-
 ```bash
   The next message will be sent in 3600 seconds...
   Fetching Bitcoin price...
