@@ -1,12 +1,13 @@
+
 # Crypto Price Notifier
 
-This Node.js application fetches the current Bitcoin price every hour and sends it as a WhatsApp message using Twilio. The program is designed to run continuously and ensures that messages are sent precisely at the start of each hour.
+This Node.js application fetches the current prices of Bitcoin, Ethereum, and Solana in US dollars every hour and sends a desktop notification with the latest values. The program is designed to run continuously and ensures that notifications are sent precisely at the start of each hour. All events are logged locally for later review.
 
 ## Features
 
-- Fetches Bitcoin price in USD and ARS from the [CryptoCompare API](https://min-api.cryptocompare.com/).
-- Sends a desktop notification with the price details for quick and easy access.
-
+- Fetches the prices of Bitcoin (BTC), Ethereum (ETH), and Solana (SOL) in USD from the [CryptoCompare API](https://min-api.cryptocompare.com/).
+- Sends a desktop notification with the latest crypto prices for quick and easy access.
+- Logs all events to a local file (`logs/app.log`).
 - Ensures accurate scheduling to execute tasks at the start of each hour.
 
 ## Requirements
@@ -18,7 +19,7 @@ This Node.js application fetches the current Bitcoin price every hour and sends 
 - Environment file (.env) with the following variables:
 
 ```env
-  CRYPTOCOMPARE_API_KEY=your_cryptocompare_api_key
+CRYPTOCOMPARE_API_KEY=your_cryptocompare_api_key
 ```
 
 ## Installation
@@ -43,26 +44,38 @@ This Node.js application fetches the current Bitcoin price every hour and sends 
 1. Start the application:
 
 ```bash
-  node src/index.js
+node src/index.js
 ```
 
 Alternatively, you can use [PM2](https://pm2.keymetrics.io/) to run the application as a background service:
 
 ```bash
-  pm2 start app.js --name bitcoin-price-notifier
+pm2 start src/index.js --name crypto-price-notifier
 ```
 
-2. The program will automatically fetch the Bitcoin price and send a WhatsApp message every hour on the dot.
+2. The program will automatically fetch the crypto prices and send a desktop notification every hour on the dot.
 
 ## Example Output
 
-```bash
-  The next message will be sent in 3600 seconds...
-  Fetching Bitcoin price...
-  Sending message with the price: Current Bitcoin price:
-  - USD: $26000
-  - ARS: $9500000
-  Message sent successfully: SID SMXXXXXXXXXXXXXXXXX
+Example notification message:
+
+```
+Precios actuales:
+- Bitcoin (BTC): $29123.45
+- Ethereum (ETH): $1823.67
+- Solana (SOL): $42.15
+```
+
+Example log output:
+
+```
+[2025-08-10T12:00:00.000Z] INFO: Iniciando el proceso para obtener los precios de las criptomonedas...
+[2025-08-10T12:00:01.000Z] INFO: Datos obtenidos correctamente. Mensaje a enviar:
+[2025-08-10T12:00:01.000Z] INFO: Precios actuales:
+- Bitcoin (BTC): $29123.45
+- Ethereum (ETH): $1823.67
+- Solana (SOL): $42.15
+[2025-08-10T12:00:01.000Z] INFO: Notificación mostrada en el sistema operativo.
 ```
 
 ## License
