@@ -1,5 +1,4 @@
 import dotenv from "dotenv";
-import twilio from "twilio";
 import winston from "winston";
 import notifier from "node-notifier";
 
@@ -16,20 +15,16 @@ const logger = winston.createLogger({
   ),
   transports: [
     new winston.transports.Console(),
-    new winston.transports.File({ filename: "/logs/app.log" }),
+    new winston.transports.File({ filename: "logs/app.log" }),
   ],
 });
 
-//? whatsApp phone numbers (origin and destination).
-const fromWhatsApp = `whatsapp:${process.env.ORIGIN_PHONE}`
-const toWhatsApp = `whatsapp:${process.env.DESTINE_PHONE}`;
-
-//? fetch the bitcoin price from the CryptoCompare API.
+//? fetch the prices of BTC, ETH and SOL in USD from the CryptoCompare API.
 const fetchCrypto = () => {
   logger.info("Obteniendo datos de la API de CryptoCompare...");
 
   return fetch(
-    "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,ARS",
+    "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,SOL&tsyms=USD",
     {
       headers: {
         Authorization: `Apikey ${process.env.CRYPTOCOMPARE_API_KEY}`,
@@ -58,21 +53,21 @@ const sendMessage = (message) => {
   logger.info('Notificación mostrada en el sistema operativo.');
 };
 
-//? function to fetch bitcoin price and send the message.
-const getBitcoinPrice = () => {
-  logger.info("Iniciando el proceso para obtener el precio de Bitcoin...");
+//? function to fetch crypto prices and send the message.
+const getCryptoPrices = () => {
+  logger.info("Iniciando el proceso para obtener los precios de las criptomonedas...");
 
   fetchCrypto()
     .then((cryptoData) => {
-      const message = `Precio actual de Bitcoin:\n- USD: $${cryptoData.USD}\n- ARS: $${cryptoData.ARS}`;
-      
+      const message = `Precios actuales:\n- Bitcoin (BTC): $${cryptoData.BTC.USD}\n- Ethereum (ETH): $${cryptoData.ETH.USD}\n- Solana (SOL): $${cryptoData.SOL.USD}`;
+
       logger.info("Datos obtenidos correctamente. Mensaje a enviar:");
       logger.info(message);
 
       return sendMessage(message);
     })
     .catch((error) => {
-      logger.error("Error en el proceso de envío del precio de Bitcoin:", error);
+      logger.error("Error en el proceso de envío de los precios de criptomonedas:", error);
     });
 };
 
@@ -94,10 +89,12 @@ const scheduleMessage = () => {
 
   //? wait until the next full hour and then set a regular interval.
   setTimeout(() => {
-    getBitcoinPrice();
-    setInterval(getBitcoinPrice, 3600000);
+    getCryptoPrices();
+    setInterval(getCryptoPrices, 3600000);
   }, delay);
 };
+
+getCryptoPrices();
 
 //? start the program.
 scheduleMessage();
