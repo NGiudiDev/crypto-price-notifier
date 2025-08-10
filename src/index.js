@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import twilio from "twilio";
 import winston from "winston";
+import notifier from "node-notifier";
 
 dotenv.config();
 
@@ -19,16 +20,9 @@ const logger = winston.createLogger({
   ],
 });
 
-//? twilio configurations.
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-
 //? whatsApp phone numbers (origin and destination).
 const fromWhatsApp = `whatsapp:${process.env.ORIGIN_PHONE}`
 const toWhatsApp = `whatsapp:${process.env.DESTINE_PHONE}`;
-
-//? initialize twilio client.
-const client = twilio(accountSid, authToken);
 
 //? fetch the bitcoin price from the CryptoCompare API.
 const fetchCrypto = () => {
@@ -54,20 +48,14 @@ const fetchCrypto = () => {
   });
 };
 
-//? send a WhatsApp message using twilio.
+//? send a notification in the OS using node-notifier.
 const sendMessage = (message) => {
-  return client.messages
-    .create({
-      body: message,
-      from: fromWhatsApp,
-      to: toWhatsApp,
-    })
-    .then((result) => {
-      logger.info(`Mensaje enviado exitosamente: SID ${result.sid}`);
-    })
-    .catch((error) => {
-      logger.error("Error al enviar el mensaje de WhatsApp:", error);
-    });
+  notifier.notify({
+    title: 'Crypto Price Notifier',
+    message: message,
+    sound: true
+  });
+  logger.info('Notificación mostrada en el sistema operativo.');
 };
 
 //? function to fetch bitcoin price and send the message.
