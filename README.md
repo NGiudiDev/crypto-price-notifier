@@ -59,9 +59,10 @@ Alternatively, you can use [PM2](https://pm2.keymetrics.io/) to run the applicat
 ### WhatsApp Message
 
 ```
-Current Bitcoin price:
-- USD: $26000
-- ARS: $9500000
+Precios actuales:
+- Bitcoin (BTC): $29123.45
+- Ethereum (ETH): $1823.67
+- Solana (SOL): $42.15
 ```
 
 ### Console Logs
