@@ -1,63 +1,66 @@
 
-# Crypto Price Notifier
+# Notificador de Precios de Criptomonedas
 
-This Node.js application fetches the current prices of Bitcoin, Ethereum, and Solana in US dollars every hour and sends a desktop notification with the latest values. The program is designed to run continuously and ensures that notifications are sent precisely at the start of each hour. All events are logged locally for later review.
+Esta aplicación de Node.js obtiene los precios actuales de Bitcoin, Ethereum y Solana en dólares estadounidenses cada hora y envía una notificación de escritorio con los valores más recientes. El programa está diseñado para ejecutarse continuamente y garantiza que las notificaciones se envíen precisamente al inicio de cada hora. Todos los eventos se registran localmente para su posterior revisión.
 
-## Features
+## Características
 
-- Fetches the prices of Bitcoin (BTC), Ethereum (ETH), and Solana (SOL) in USD from the [CryptoCompare API](https://min-api.cryptocompare.com/).
-- Sends a desktop notification with the latest crypto prices for quick and easy access.
-- Logs all events to a local file (`logs/app.log`).
-- Ensures accurate scheduling to execute tasks at the start of each hour.
+- Obtiene los precios de Bitcoin (BTC), Ethereum (ETH) y Solana (SOL) en USD desde la [API de CryptoCompare](https://min-api.cryptocompare.com/).
 
-## Requirements
+- Envía una notificación de escritorio con los precios de criptomonedas más recientes para un acceso rápido y fácil.
 
-- Node.js (v14 or higher recommended)
+- Registra todos los eventos en un archivo local (`logs/app.log`).
 
-- CryptoCompare API Key
+- Garantiza una programación precisa para ejecutar tareas al inicio de cada hora.
 
-- Environment file (.env) with the following variables:
+## Requisitos
+
+- Node.js (se recomienda v14 o superior)
+
+- Clave API de CryptoCompare
+
+- Archivo de entorno (.env) con las siguientes variables:
 
 ```env
-CRYPTOCOMPARE_API_KEY=your_cryptocompare_api_key
+CRYPTOCOMPARE_API_KEY=tu_clave_api_cryptocompare
 ```
 
-## Installation
+## Instalación
 
-1. Clone the repository:
+1. Clonar el repositorio:
 
 ```bash
   git clone https://github.com/NGiudiDev/crypto-price-notifier.git
   cd crypto-price-notifier
 ```
 
-2. Install dependencies:
+2. Instalar dependencias:
 
 ```bash
   npm install
 ```
 
-3. Create a `.env` file in the root directory and configure the required environment variables as shown above.
+3. Crear un archivo `.env` en el directorio raíz y configurar las variables de entorno requeridas como se muestra arriba.
 
-## Usage
+## Uso
 
-1. Start the application:
+1. Iniciar la aplicación:
 
 ```bash
 node src/index.js
 ```
 
-Alternatively, you can use [PM2](https://pm2.keymetrics.io/) to run the application as a background service:
+Alternativamente, puedes usar [PM2](https://pm2.keymetrics.io/) para ejecutar la aplicación como un servicio en segundo plano:
 
 ```bash
 pm2 start src/index.js --name crypto-price-notifier
 ```
 
-2. The program will automatically fetch the crypto prices and send a desktop notification every hour on the dot.
+2. El programa obtendrá automáticamente los precios de las criptomonedas y enviará una notificación de escritorio cada hora en punto.
 
-## Example Output
+## Ejemplo de Salida
 
-Example notification message:
+Mensaje de notificación de ejemplo:
 
 ```
 Precios actuales:
@@ -66,7 +69,7 @@ Precios actuales:
 - Solana (SOL): $42.15
 ```
 
-Example log output:
+Salida de registro de ejemplo:
 
 ```
 [2025-08-10T12:00:00.000Z] INFO: Iniciando el proceso para obtener los precios de las criptomonedas...
@@ -78,14 +81,14 @@ Example log output:
 [2025-08-10T12:00:01.000Z] INFO: Notificación mostrada en el sistema operativo.
 ```
 
-## License
+## Licencia
 
-This project is licensed under the MIT License. Feel free to use and modify it as needed.
+Este proyecto está licenciado bajo la Licencia MIT. Siéntete libre de usarlo y modificarlo según sea necesario.
 
-## Contributing
+## Contribuciones
 
-Contributions are welcome! Feel free to open an issue or submit a pull request for any improvements or features.
+¡Las contribuciones son bienvenidas! No dudes en abrir un issue o enviar un pull request para cualquier mejora o característica.
 
-## Acknowledgements
+## Agradecimientos
 
-- [CryptoCompare](https://min-api.cryptocompare.com/) for providing real-time cryptocurrency data.
+- [CryptoCompare](https://min-api.cryptocompare.com/) por proporcionar datos de criptomonedas en tiempo real.

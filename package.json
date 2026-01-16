@@ -14,14 +14,14 @@
     "stop": "pm2 stop src/index.js"
   },
   "dependencies": {
-    "dotenv": "^17.2.3",
-    "node-notifier": "^10.0.1",
-    "pm2": "^6.0.13",
-    "winston": "^3.18.2"
+    "dotenv": "17.2.3",
+    "node-notifier": "10.0.1",
+    "pm2": "6.0.14",
+    "winston": "3.19.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.36.0",
-    "eslint": "^9.36.0",
-    "globals": "^16.4.0"
+    "@eslint/js": "9.39.2",
+    "eslint": "9.39.2",
+    "globals": "17.0.0"
   }
 }
