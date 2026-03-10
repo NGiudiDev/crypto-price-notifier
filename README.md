@@ -85,10 +85,6 @@ Salida de registro de ejemplo:
 
 Este proyecto está licenciado bajo la Licencia MIT. Siéntete libre de usarlo y modificarlo según sea necesario.
 
-## Contribuciones
-
-¡Las contribuciones son bienvenidas! No dudes en abrir un issue o enviar un pull request para cualquier mejora o característica.
-
 ## Agradecimientos
 
 - [CryptoCompare](https://min-api.cryptocompare.com/) por proporcionar datos de criptomonedas en tiempo real.
